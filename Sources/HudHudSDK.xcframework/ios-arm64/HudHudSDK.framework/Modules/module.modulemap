@@ -1,0 +1,11 @@
+framework module HudHudSDK {
+  umbrella header "HudHudSDK.h"
+  export *
+
+  module * { export * }
+}
+
+module HudHudSDK.Swift {
+  header "HudHudSDK-Swift.h"
+  requires objc
+}

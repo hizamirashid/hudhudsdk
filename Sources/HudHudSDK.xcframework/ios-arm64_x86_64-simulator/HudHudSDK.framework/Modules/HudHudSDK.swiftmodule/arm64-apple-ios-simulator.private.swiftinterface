@@ -1,0 +1,146 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.9.2 (swiftlang-5.9.2.2.56 clang-1500.1.0.2.5)
+// swift-module-flags: -target arm64-apple-ios16.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name HudHudSDK
+// swift-module-flags-ignorable: -enable-bare-slash-regex
+import Alamofire
+import Combine
+import CoreData
+import CoreGraphics
+import CoreText
+import CryptoKit
+import DeveloperToolsSupport
+import Foundation
+@_exported import HudHudSDK
+import Swift
+import SwiftUI
+import SwiftfulRouting
+import UIKit
+import UserNotifications
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+
+@available(iOS 16.0, *)
+@_Concurrency.MainActor(unsafe) public struct HomeView : SwiftUI.View {
+  @_Concurrency.MainActor(unsafe) public var body: some SwiftUI.View {
+    get
+  }
+  public typealias Body = @_opaqueReturnTypeOf("$s03HudA3SDK8HomeViewV4bodyQrvp", 0) __
+}
+
+public enum APIRouter : Alamofire.URLRequestConvertible {
+  case getDhikr
+  case getHealth
+  public func asURLRequest() throws -> Foundation.URLRequest
+  public static func == (a: HudHudSDK.APIRouter, b: HudHudSDK.APIRouter) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+
+@_hasMissingDesignatedInitializers public class HomeViewModel : Foundation.ObservableObject {
+  public static let shared: HudHudSDK.HomeViewModel
+  public typealias ObjectWillChangePublisher = Combine.ObservableObjectPublisher
+  @objc deinit
+}
+@available(iOS 16.0, *)
+@_Concurrency.MainActor(unsafe) public struct IslamicCalendarView : SwiftUI.View {
+  @_Concurrency.MainActor(unsafe) public init()
+  @_Concurrency.MainActor(unsafe) public var body: some SwiftUI.View {
+    get
+  }
+  public typealias Body = @_opaqueReturnTypeOf("$s03HudA3SDK19IslamicCalendarViewV4bodyQrvp", 0) __
+}
+
+
+@_hasMissingDesignatedInitializers public class IslamicCalendarViewModel : Foundation.ObservableObject {
+  public static let shared: HudHudSDK.IslamicCalendarViewModel
+  public typealias ObjectWillChangePublisher = Combine.ObservableObjectPublisher
+  @objc deinit
+}
+
+@available(iOS 16.0, *)
+@_Concurrency.MainActor(unsafe) public struct IslamicCalendarSettingsView : SwiftUI.View {
+  @_Concurrency.MainActor(unsafe) public init()
+  @_Concurrency.MainActor(unsafe) public var body: some SwiftUI.View {
+    get
+  }
+  public typealias Body = @_opaqueReturnTypeOf("$s03HudA3SDK27IslamicCalendarSettingsViewV4bodyQrvp", 0) __
+}
+
+
+@_hasMissingDesignatedInitializers @available(iOS 16.0, *)
+public class HudHudSDK : Foundation.ObservableObject {
+  public static let shared: HudHudSDK.HudHudSDK
+  public func initialise(apiUrl: Swift.String, clientId: Swift.String, clientSecret: Swift.String)
+  public func login(id: Swift.String, firstName: Swift.String, lastName: Swift.String)
+  public func present(from viewController: UIKit.UIViewController, animated: Swift.Bool = true)
+  public typealias ObjectWillChangePublisher = Combine.ObservableObjectPublisher
+  @objc deinit
+}
+@available(iOS 16.0, *)
+@_Concurrency.MainActor(unsafe) public struct HudHudView : SwiftUI.View {
+  @_Concurrency.MainActor(unsafe) public init()
+  @_Concurrency.MainActor(unsafe) public var body: some SwiftUI.View {
+    get
+  }
+  public typealias Body = @_opaqueReturnTypeOf("$s03HudA3SDK0aA4ViewV4bodyQrvp", 0) __
+}
+@available(iOS 16.0, *)
+public struct HudHudViewModifier : SwiftUI.ViewModifier {
+  public init(isPresented: SwiftUI.Binding<Swift.Bool>)
+  @_Concurrency.MainActor(unsafe) public func body(content: HudHudSDK.HudHudViewModifier.Content) -> some SwiftUI.View
+  
+  public typealias Body = @_opaqueReturnTypeOf("$s03HudA3SDK0aA12ViewModifierV4body7contentQr7SwiftUI01_cD8_ContentVyACG_tF", 0) __
+}
+@available(iOS 16.0, *)
+extension SwiftUI.View {
+  public func launchFaith(isPresented: SwiftUI.Binding<Swift.Bool>) -> some SwiftUI.View
+  
+}
+@objc @_inheritsConvenienceInitializers @available(iOS 16.0, *)
+@_Concurrency.MainActor(unsafe) public class HudHudViewController : UIKit.UIViewController {
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+
+
+
+@available(iOS 16.0, *)
+@_Concurrency.MainActor(unsafe) public struct IslamicEventsView : SwiftUI.View {
+  @_Concurrency.MainActor(unsafe) public init()
+  @_Concurrency.MainActor(unsafe) public var body: some SwiftUI.View {
+    get
+  }
+  public typealias Body = @_opaqueReturnTypeOf("$s03HudA3SDK17IslamicEventsViewV4bodyQrvp", 0) __
+}
+
+
+@_hasMissingDesignatedInitializers public class DhikrViewModel : Foundation.ObservableObject {
+  public static let shared: HudHudSDK.DhikrViewModel
+  public typealias ObjectWillChangePublisher = Combine.ObservableObjectPublisher
+  @objc deinit
+}
+@available(iOS 16.0, *)
+@_Concurrency.MainActor(unsafe) public struct DhikrCounterView : SwiftUI.View {
+  @_Concurrency.MainActor(unsafe) public init()
+  @_Concurrency.MainActor(unsafe) public var body: some SwiftUI.View {
+    get
+  }
+  public typealias Body = @_opaqueReturnTypeOf("$s03HudA3SDK16DhikrCounterViewV4bodyQrvp", 0) __
+}
+public enum FontError : Swift.Error {
+  case failedToRegisterFont
+  public static func == (a: HudHudSDK.FontError, b: HudHudSDK.FontError) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension HudHudSDK.APIRouter : Swift.Equatable {}
+extension HudHudSDK.APIRouter : Swift.Hashable {}
+extension HudHudSDK.FontError : Swift.Equatable {}
+extension HudHudSDK.FontError : Swift.Hashable {}
