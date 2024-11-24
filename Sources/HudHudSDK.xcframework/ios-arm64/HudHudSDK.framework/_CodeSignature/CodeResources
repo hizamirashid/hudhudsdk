@@ -8,6 +8,22 @@
 		<data>
 		840+Cs5ISZTmzxRKOLavJHfs2rU=
 		</data>
+		<key>Frameworks/Alamofire.framework/Alamofire</key>
+		<data>
+		WByXOncfO2KfJaghXiyacKoi0tw=
+		</data>
+		<key>Frameworks/Alamofire.framework/Info.plist</key>
+		<data>
+		byg4kV0zXpmO7s3PJaKwdjPcorY=
+		</data>
+		<key>Frameworks/Alamofire.framework/PrivacyInfo.xcprivacy</key>
+		<data>
+		ovFJMFOLMjzh8DLJKmXncj8JIgU=
+		</data>
+		<key>Frameworks/Alamofire.framework/_CodeSignature/CodeResources</key>
+		<data>
+		KU8YnKp4XYQq3gS10eqLXcMi628=
+		</data>
 		<key>Headers/HudHudSDK-Swift.h</key>
 		<data>
 		RB56V9hHgvI9RdtDCL/EjP5Hjvk=
@@ -22,23 +38,23 @@
 		</data>
 		<key>Modules/HudHudSDK.swiftmodule/arm64-apple-ios.abi.json</key>
 		<data>
-		qBeFosFQogrSDBXOTnNA+dMMCr0=
+		Lit30U/RUMQ0dYMf41Ukdt+1Y1Y=
 		</data>
 		<key>Modules/HudHudSDK.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<data>
-		RcqIU8dPnUTFD5kGDNdRwPFK/SA=
+		6cp1w9Ipi5n3r98PVQtd2OHyrIg=
 		</data>
 		<key>Modules/HudHudSDK.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<data>
-		S9FspUA49hlbke/+TqTe1/p/JIg=
+		SIe1dUzX5RijliJ3Wqo5+WKkUbk=
 		</data>
 		<key>Modules/HudHudSDK.swiftmodule/arm64-apple-ios.swiftinterface</key>
 		<data>
-		RcqIU8dPnUTFD5kGDNdRwPFK/SA=
+		6cp1w9Ipi5n3r98PVQtd2OHyrIg=
 		</data>
 		<key>Modules/HudHudSDK.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<data>
-		3eZSoGsedD8S/cju8yxlDcuonbM=
+		BATXAWKDBWwvR6rRI26IUSJ+yzo=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -52,6 +68,34 @@
 			<key>hash2</key>
 			<data>
 			wfpHVVI9IbNIN9jbBlP1CiMC2cXT6ix4c8DWK/2SfBw=
+			</data>
+		</dict>
+		<key>Frameworks/Alamofire.framework/Alamofire</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			6CrUoiwtBbUm/gA6bo1YqpXk0XEv+WQFhRWdUh78Iv0=
+			</data>
+		</dict>
+		<key>Frameworks/Alamofire.framework/Info.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			C0fRR3GSsJKFUlq0yCebWVs+1pkNHDm7+RJeEzYzfz8=
+			</data>
+		</dict>
+		<key>Frameworks/Alamofire.framework/PrivacyInfo.xcprivacy</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			CNkOaUbb/qDQtbF/tlnXfu0j5EO3Rdjntbn6N4y3RHc=
+			</data>
+		</dict>
+		<key>Frameworks/Alamofire.framework/_CodeSignature/CodeResources</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			/9S5JVu+CveoeEi1L8dyAEcRr04Ojrs3+2lUDq96+OQ=
 			</data>
 		</dict>
 		<key>Headers/HudHudSDK-Swift.h</key>
@@ -72,35 +116,35 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			CakU2d+0n5IUUO/oi4fFxApW+0OMBHnQXM17Zfbk8S0=
+			vGiPTwUZ6QMKJfnsZSXHSauj+OAuuhHT/UBla8K/NuU=
 			</data>
 		</dict>
 		<key>Modules/HudHudSDK.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			aKm56rf14uqtNIPmBpKzRD24QXtYJc9FhtMJOj0+iPk=
+			JUuT2uDUkI/eXiNNgBFZO8AtZgDUwGv3ttVqU6w3t3E=
 			</data>
 		</dict>
 		<key>Modules/HudHudSDK.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			fUgRP8c/YbZc0snJQSgYn12t+vHEwF46LXyzrglHroo=
+			EOCbvpE5gOfkkGgchzqZ59pgJqc1OUtgt0UY/XpwzDM=
 			</data>
 		</dict>
 		<key>Modules/HudHudSDK.swiftmodule/arm64-apple-ios.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			aKm56rf14uqtNIPmBpKzRD24QXtYJc9FhtMJOj0+iPk=
+			JUuT2uDUkI/eXiNNgBFZO8AtZgDUwGv3ttVqU6w3t3E=
 			</data>
 		</dict>
 		<key>Modules/HudHudSDK.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			pTkhd2peR6FGvI5ry2eCfNTZuQ2DBfw8FzTuF1K3gGQ=
+			A/4sHoFi9rx1rnCjWBuOoE8gFe/C8okIZCNHnM8EcbU=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

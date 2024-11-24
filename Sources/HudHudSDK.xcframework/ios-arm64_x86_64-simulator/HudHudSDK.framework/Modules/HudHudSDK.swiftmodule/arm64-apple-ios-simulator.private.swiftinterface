@@ -13,7 +13,6 @@ import Foundation
 @_exported import HudHudSDK
 import Swift
 import SwiftUI
-import SwiftfulRouting
 import UIKit
 import UserNotifications
 import _Concurrency
@@ -27,6 +26,33 @@ import _SwiftConcurrencyShims
   }
   public typealias Body = @_opaqueReturnTypeOf("$s03HudA3SDK8HomeViewV4bodyQrvp", 0) __
 }
+public struct AnyRoute : Swift.Identifiable, Swift.Hashable {
+  public let id: Swift.String
+  public var segue: HudHudSDK.SegueOption
+  public var onDismiss: (() -> Swift.Void)?
+  public var destination: (HudHudSDK.AnyRouter) -> any SwiftUI.View
+  public var isPresented: Swift.Bool
+  public init(_ segue: HudHudSDK.SegueOption, onDismiss: (() -> Swift.Void)? = nil, destination: @escaping (HudHudSDK.AnyRouter) -> any SwiftUI.View)
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (lhs: HudHudSDK.AnyRoute, rhs: HudHudSDK.AnyRoute) -> Swift.Bool
+  public typealias ID = Swift.String
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct PushRoute : Swift.Identifiable {
+  public let id: Swift.String
+  public init(onDismiss: (() -> Swift.Void)? = nil, destination: @escaping (HudHudSDK.AnyRouter) -> any SwiftUI.View)
+  public typealias ID = Swift.String
+}
+public enum DialogOption {
+  case alert, confirmationDialog
+  public static func == (a: HudHudSDK.DialogOption, b: HudHudSDK.DialogOption) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
 
 public enum APIRouter : Alamofire.URLRequestConvertible {
   case getDhikr
@@ -39,6 +65,18 @@ public enum APIRouter : Alamofire.URLRequestConvertible {
   }
 }
 
+public enum SegueOption : Swift.Equatable {
+  case push, sheet
+  @available(iOS 14.0, *)
+  case fullScreenCover
+  @available(iOS 16.0, *)
+  case sheetDetents
+  public static func == (a: HudHudSDK.SegueOption, b: HudHudSDK.SegueOption) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
 @_hasMissingDesignatedInitializers public class HomeViewModel : Foundation.ObservableObject {
   public static let shared: HudHudSDK.HomeViewModel
   public typealias ObjectWillChangePublisher = Combine.ObservableObjectPublisher
@@ -60,6 +98,49 @@ public enum APIRouter : Alamofire.URLRequestConvertible {
   @objc deinit
 }
 
+public enum UrlOption : Swift.Equatable {
+  case inAppBrowser(segue: HudHudSDK.SegueOption)
+  case safari, urlSchema
+  public static func == (a: HudHudSDK.UrlOption, b: HudHudSDK.UrlOption) -> Swift.Bool
+}
+public struct AnyDestination : Swift.Identifiable, Swift.Hashable {
+  public let id: Swift.String
+  public let destination: SwiftUI.AnyView
+  public let onDismiss: (() -> Swift.Void)?
+  public init<T>(_ destination: T, onDismiss: (() -> Swift.Void)? = nil) where T : SwiftUI.View
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (lhs: HudHudSDK.AnyDestination, rhs: HudHudSDK.AnyDestination) -> Swift.Bool
+  public typealias ID = Swift.String
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public protocol TransitionSupportRouter {
+  func showTransition<T>(transition: HudHudSDK.TransitionOption, destination: @escaping (HudHudSDK.AnyRouter) -> T) where T : SwiftUI.View
+  func dismissTransition()
+  var isRootView: Swift.Bool { get }
+}
+public struct TransitionSupportViewBuilder<Content> : SwiftUI.View, HudHudSDK.TransitionSupportRouter where Content : SwiftUI.View {
+  public init(router: HudHudSDK.AnyRouter, allowsSwipeBack: Swift.Bool = true, allowSimultaneous: Swift.Bool = true, content: @escaping (any HudHudSDK.TransitionSupportRouter) -> Content)
+  @_Concurrency.MainActor(unsafe) public var body: some SwiftUI.View {
+    get
+  }
+  public var isRootView: Swift.Bool {
+    get
+  }
+  public func showTransition<T>(transition: HudHudSDK.TransitionOption, destination: @escaping (HudHudSDK.AnyRouter) -> T) where T : SwiftUI.View
+  public func dismissTransition()
+  public typealias Body = @_opaqueReturnTypeOf("$s03HudA3SDK28TransitionSupportViewBuilderV4bodyQrvp", 0) __<Content>
+}
+
+@available(iOS 14, *)
+public struct FrameReader : SwiftUI.View {
+  public init(coordinateSpace: SwiftUI.CoordinateSpace, onChange: @escaping (_ frame: CoreFoundation.CGRect) -> Swift.Void)
+  @_Concurrency.MainActor(unsafe) public var body: some SwiftUI.View {
+    get
+  }
+  public typealias Body = @_opaqueReturnTypeOf("$s03HudA3SDK11FrameReaderV4bodyQrvp", 0) __
+}
 @available(iOS 16.0, *)
 @_Concurrency.MainActor(unsafe) public struct IslamicCalendarSettingsView : SwiftUI.View {
   @_Concurrency.MainActor(unsafe) public init()
@@ -71,7 +152,7 @@ public enum APIRouter : Alamofire.URLRequestConvertible {
 
 
 @_hasMissingDesignatedInitializers @available(iOS 16.0, *)
-public class HudHudSDK : Foundation.ObservableObject {
+public class HudHudSDK : Combine.ObservableObject {
   public static let shared: HudHudSDK.HudHudSDK
   public func initialise(apiUrl: Swift.String, clientId: Swift.String, clientSecret: Swift.String)
   public func login(id: Swift.String, firstName: Swift.String, lastName: Swift.String)
@@ -108,6 +189,39 @@ extension SwiftUI.View {
 }
 
 
+public typealias LazyZStack = HudHudSDK.AnyRecursiveView
+public struct AnyRecursiveView<T> : SwiftUI.View where T : Swift.Identifiable {
+  public init(allowSimultaneous: Swift.Bool, selection: T?, items: [T], view: @escaping (T) -> any SwiftUI.View)
+  public init(allowSimultaneous: Swift.Bool, selection: T?, items: Swift.Range<T>, view: @escaping (T) -> any SwiftUI.View) where T : HudHudSDK.IntegerIdentifiable, T : Swift.Comparable
+  public init(allowSimultaneous: Swift.Bool, selection: Swift.Bool?, view: @escaping (T) -> any SwiftUI.View) where T : HudHudSDK.BoolIdentifiable
+  @_Concurrency.MainActor(unsafe) public var body: some SwiftUI.View {
+    get
+  }
+  public typealias Body = @_opaqueReturnTypeOf("$s03HudA3SDK16AnyRecursiveViewV4bodyQrvp", 0) __<T>
+}
+public protocol IntegerIdentifiable : Swift.Identifiable where Self.ID == Swift.Int {
+  var id: Swift.Int { get }
+  init(id: Swift.Int)
+}
+extension Swift.Int : HudHudSDK.IntegerIdentifiable {
+  public var id: Swift.Int {
+    get
+  }
+  public init(id: Swift.Int)
+  public typealias ID = Swift.Int
+}
+public protocol BoolIdentifiable : Swift.Identifiable where Self.ID == Swift.Bool {
+  var id: Swift.Bool { get }
+  init(id: Swift.Bool)
+}
+extension Swift.Bool : HudHudSDK.BoolIdentifiable {
+  public var id: Swift.Bool {
+    get
+  }
+  public init(id: Swift.Bool)
+  public typealias ID = Swift.Bool
+}
+
 
 @available(iOS 16.0, *)
 @_Concurrency.MainActor(unsafe) public struct IslamicEventsView : SwiftUI.View {
@@ -119,10 +233,37 @@ extension SwiftUI.View {
 }
 
 
+public struct RouterView<T> : SwiftUI.View where T : SwiftUI.View {
+  public init(addNavigationView: Swift.Bool = true, screens: (SwiftUI.Binding<[HudHudSDK.AnyDestination]>)? = nil, @SwiftUI.ViewBuilder content: @escaping (HudHudSDK.AnyRouter) -> T)
+  @_Concurrency.MainActor(unsafe) public var body: some SwiftUI.View {
+    get
+  }
+  public typealias Body = @_opaqueReturnTypeOf("$s03HudA3SDK10RouterViewV4bodyQrvp", 0) __<T>
+}
 @_hasMissingDesignatedInitializers public class DhikrViewModel : Foundation.ObservableObject {
   public static let shared: HudHudSDK.DhikrViewModel
   public typealias ObjectWillChangePublisher = Combine.ObservableObjectPublisher
   @objc deinit
+}
+public protocol Router {
+  func enterScreenFlow(_ routes: [HudHudSDK.AnyRoute])
+  func showNextScreen() throws
+  func dismissScreen()
+  func dismissEnvironment()
+  @available(iOS 16, *)
+  func dismissScreenStack()
+  @available(iOS 16, *)
+  func pushScreenStack(destinations: [HudHudSDK.PushRoute])
+  @available(iOS 16, *)
+  func showResizableSheet<V>(sheetDetents: Swift.Set<HudHudSDK.PresentationDetentTransformable>, selection: SwiftUI.Binding<HudHudSDK.PresentationDetentTransformable>?, showDragIndicator: Swift.Bool, onDismiss: (() -> Swift.Void)?, @SwiftUI.ViewBuilder destination: @escaping (HudHudSDK.AnyRouter) -> V) where V : SwiftUI.View
+  func showAlert<T>(_ option: HudHudSDK.DialogOption, title: Swift.String, subtitle: Swift.String?, @SwiftUI.ViewBuilder alert: @escaping () -> T, buttonsiOS13: [SwiftUI.Alert.Button]?) where T : SwiftUI.View
+  func dismissAlert()
+  func showModal<V>(id: Swift.String?, transition: SwiftUI.AnyTransition, animation: SwiftUI.Animation, alignment: SwiftUI.Alignment, backgroundColor: SwiftUI.Color?, dismissOnBackgroundTap: Swift.Bool, ignoreSafeArea: Swift.Bool, @SwiftUI.ViewBuilder destination: @escaping () -> V) where V : SwiftUI.View
+  func dismissModal(id: Swift.String?)
+  func dismissAllModals()
+  func showSafari(_ url: @escaping () -> Foundation.URL)
+}
+public struct ModalConfiguration {
 }
 @available(iOS 16.0, *)
 @_Concurrency.MainActor(unsafe) public struct DhikrCounterView : SwiftUI.View {
@@ -132,6 +273,22 @@ extension SwiftUI.View {
   }
   public typealias Body = @_opaqueReturnTypeOf("$s03HudA3SDK16DhikrCounterViewV4bodyQrvp", 0) __
 }
+
+public enum PresentationDetentTransformable : Swift.Hashable {
+  case medium
+  case large
+  case height(CoreFoundation.CGFloat)
+  case fraction(CoreFoundation.CGFloat)
+  case unknown
+  public var title: Swift.String {
+    get
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: HudHudSDK.PresentationDetentTransformable, b: HudHudSDK.PresentationDetentTransformable) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
 public enum FontError : Swift.Error {
   case failedToRegisterFont
   public static func == (a: HudHudSDK.FontError, b: HudHudSDK.FontError) -> Swift.Bool
@@ -140,7 +297,61 @@ public enum FontError : Swift.Error {
     get
   }
 }
+public enum TransitionOption : Swift.String, Swift.CaseIterable {
+  case trailing, trailingCover, leading, leadingCover, top, topCover, bottom, bottomCover
+  public init?(rawValue: Swift.String)
+  public typealias AllCases = [HudHudSDK.TransitionOption]
+  public typealias RawValue = Swift.String
+  public static var allCases: [HudHudSDK.TransitionOption] {
+    get
+  }
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public struct RouterEnvironmentKey : SwiftUI.EnvironmentKey {
+  public static let defaultValue: HudHudSDK.AnyRouter
+  public typealias Value = HudHudSDK.AnyRouter
+}
+extension SwiftUI.EnvironmentValues {
+  public var router: HudHudSDK.AnyRouter {
+    get
+    set
+  }
+}
+public struct AnyRouter : HudHudSDK.Router {
+  public init(object: any HudHudSDK.Router)
+  public func showScreen<T>(_ option: HudHudSDK.SegueOption, onDismiss: (() -> Swift.Void)? = nil, @SwiftUI.ViewBuilder destination: @escaping (HudHudSDK.AnyRouter) -> T) where T : SwiftUI.View
+  public func showScreen(_ route: HudHudSDK.AnyRoute)
+  public func enterScreenFlow(_ routes: [HudHudSDK.AnyRoute])
+  public func showNextScreen() throws
+  public func showNextScreenOrDismissEnvironment()
+  public func dismissEnvironment()
+  public func dismissScreen()
+  @available(iOS 16, *)
+  public func pushScreenStack(destinations: [HudHudSDK.PushRoute])
+  @available(iOS 16, *)
+  public func showResizableSheet<V>(sheetDetents: Swift.Set<HudHudSDK.PresentationDetentTransformable>, selection: SwiftUI.Binding<HudHudSDK.PresentationDetentTransformable>?, showDragIndicator: Swift.Bool, onDismiss: (() -> Swift.Void)? = nil, destination: @escaping (HudHudSDK.AnyRouter) -> V) where V : SwiftUI.View
+  @available(iOS 16, *)
+  public func dismissScreenStack()
+  @available(iOS 15, *)
+  public func showAlert<T>(_ option: HudHudSDK.DialogOption, title: Swift.String, subtitle: Swift.String? = nil, @SwiftUI.ViewBuilder alert: @escaping () -> T) where T : SwiftUI.View
+  public func showAlert<T>(_ option: HudHudSDK.DialogOption, title: Swift.String, subtitle: Swift.String? = nil, @SwiftUI.ViewBuilder alert: @escaping () -> T, buttonsiOS13: [SwiftUI.Alert.Button]? = nil) where T : SwiftUI.View
+  public func showBasicAlert(text: Swift.String, action: (() -> Swift.Void)? = nil)
+  public func dismissAlert()
+  public func showModal<T>(id: Swift.String? = nil, transition: SwiftUI.AnyTransition = .identity, animation: SwiftUI.Animation = .smooth, alignment: SwiftUI.Alignment = .center, backgroundColor: SwiftUI.Color? = nil, dismissOnBackgroundTap: Swift.Bool = true, ignoreSafeArea: Swift.Bool = true, @SwiftUI.ViewBuilder destination: @escaping () -> T) where T : SwiftUI.View
+  public func showBasicModal<T>(@SwiftUI.ViewBuilder destination: @escaping () -> T) where T : SwiftUI.View
+  public func dismissModal(id: Swift.String? = nil)
+  public func dismissAllModals()
+  public func showSafari(_ url: @escaping () -> Foundation.URL)
+}
+extension HudHudSDK.DialogOption : Swift.Equatable {}
+extension HudHudSDK.DialogOption : Swift.Hashable {}
 extension HudHudSDK.APIRouter : Swift.Equatable {}
 extension HudHudSDK.APIRouter : Swift.Hashable {}
+extension HudHudSDK.SegueOption : Swift.Hashable {}
 extension HudHudSDK.FontError : Swift.Equatable {}
 extension HudHudSDK.FontError : Swift.Hashable {}
+extension HudHudSDK.TransitionOption : Swift.Equatable {}
+extension HudHudSDK.TransitionOption : Swift.Hashable {}
+extension HudHudSDK.TransitionOption : Swift.RawRepresentable {}
